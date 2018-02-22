@@ -1,0 +1,428 @@
+/*
+* CONTENTS
+*
+* VARIABLES
+* Colors............CSS variables for different colors
+*
+* SETTINGS
+*
+* TYPOGRAHPY
+*
+* UTILITY CLASSES
+* Links............Utility classes for adding styles to links
+* Gradients........BG gradients used on the site
+*
+* ANIMATIONS
+* fadeInTop........Fade in content from the top
+* fadeIn...........Fade in content from the bottom
+* gradAnimation....Animation of the gradient by using bg posistion
+*
+* COMPONENTS
+* Header...........Global header and site navigation
+* Buttons..........Styles for the primary button
+*
+*/
+
+
+
+
+/*------------------------------------*\
+  #VARIABLES
+\*------------------------------------*/
+:root {
+  --c-primary: #c90964;
+  --c-primary-dark: #4e1879;
+  --c-secondary: #30528a;
+  --c-btn-primary: #178574;
+  --c-btn-primary-hover: #13675a;
+  --c-dark-grey: #333;
+  --c-light-grey: #f4f1eb;
+}
+
+
+
+
+
+/*------------------------------------*\
+  #SETTINGS
+\*------------------------------------*/
+*,
+*::after,
+*::before {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+* {
+  -webkit-transition: all 0.3s ease-in;
+       -o-transition: all 0.3s ease-in;
+          transition: all 0.3s ease-in;
+}
+
+
+/*
+  1 - Default browser font size is 16px,
+  this sets it to 10px for easier calculations
+  QUESTION: This still okay to do?
+*/
+html {
+  font-size: 62.5%; /* 1 */
+  font-family: "Open Sans", Arial, Helvetica, sans-serif;
+  color: var(--c-dark-grey, #333);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  overflow: hidden;
+  background-color: var(--c-primary-dark, #4e1879);
+  -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
+          box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
+}
+
+/* Stopping the animated gradient from overlaying the content */
+body, header, main, footer {
+  position: relative;
+}
+
+
+
+/*------------------------------------*\
+  #TYPOGRAHPY
+\*------------------------------------*/
+h1, h2, h3, p, li {
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: normal;
+  line-height: 1.3;
+}
+
+h1 sup {
+  font-size: 50%;
+}
+
+h2 {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+p,
+li {
+  font-size: 1.5rem;
+  line-height: 1.4;
+}
+
+small {
+  font-size: 90%;
+}
+
+.small {
+  font-size: 1.2rem;
+  line-height: 1.3;
+}
+
+ul,
+ol {
+  padding-left: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+a:focus,
+button:focus {
+  outline: 3px dotted var(--c-primary-dark, #4e1879);
+}
+
+@media screen and (min-width: 25em) { /* 400 */
+  h1 {
+    font-size: 3.4rem;
+    line-height: 1.2;
+  }
+
+  .small {
+    font-size: 1.4rem;
+  }
+}
+
+@media screen and (min-width: 43.75em) { /* 700 */
+  h1 {
+    font-size: 4.4rem;
+    line-height: 1.2;
+  }
+
+  .small {
+    font-size: 1.5rem;
+  }
+}
+
+
+
+
+
+/*------------------------------------*\
+  #UTILITY CLASSES
+\*------------------------------------*/
+
+.link-underlined {
+  position: relative;
+  color: var(--c-primary-dark, #4e1879);
+  text-decoration: none;
+  -webkit-transition: all .2s linear;
+       -o-transition: all .2s linear;
+          transition: all .2s linear;
+}
+
+.link-underlined:hover,
+.link-underlined:focus {
+  -webkit-transform: translateY(-.5vh);
+      -ms-transform: translateY(-.5vh);
+          transform: translateY(-.5vh);
+  color: var(--c-primary, #c90964);
+}
+
+@media screen and (min-width: 31.21em) { /* 500 */
+  .link-underlined::before {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: -30%;
+    width: 110%;
+    height: 4px;
+    background-color: var(--c-primary, #c90964);
+    opacity: 0;
+    -webkit-transition: all .2s linear;
+         -o-transition: all .2s linear;
+            transition: all .2s linear;
+  }
+
+  .link-underlined:hover::before,
+  .link-underlined:focus::before {
+    opacity: 1;
+    left: -5%;
+  }
+}
+
+
+/*
+* Gradient animation from https://codepen.io/P1N2O/pen/pyBNzX
+* However animating top/left instead as bg size was using a lot of CPU
+* & causing screen to flicker on some devices
+*/
+.bg-gradient::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 400%;
+  height: 400%;
+  background: -webkit-linear-gradient(290deg, var(--c-primary, #c90964), var(--c-primary-dark, #4e1879), var(--c-secondary, #30528a));
+  background: -o-linear-gradient(290deg, var(--c-primary, #c90964), var(--c-primary-dark, #4e1879), var(--c-secondary, #30528a));
+  background: linear-gradient(160deg, var(--c-primary, #c90964), var(--c-primary-dark, #4e1879), var(--c-secondary, #30528a));
+  background-size: cover;
+  -webkit-animation: gradAnimation 14s ease infinite;
+          animation: gradAnimation 14s ease infinite;
+}
+
+
+
+
+
+/*------------------------------------*\
+  #ANIMATIONS
+\*------------------------------------*/
+
+@keyframes fadeInTop {
+  /* Animation for fading content in from top  */
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-5vh);
+        -ms-transform: translateY(-5vh);
+            transform: translateY(-5vh);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+        -ms-transform: none;
+            transform: none;
+  }
+}
+
+
+/* Animation for fading content in from bottom  */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(10vh);
+        -ms-transform: translateY(10vh);
+            transform: translateY(10vh);
+  }
+  50% {
+    -webkit-transform: none;
+        -ms-transform: none;
+            transform: none;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+
+/* Animation that animates the background */
+@keyframes gradAnimation {
+    0% {
+      top: 0;
+      left: 0;
+    }
+    50% {
+      top: -200%;
+      left: -200%;
+    }
+    100% {
+      top: 0;
+      left: 0;
+    }
+}
+
+
+/*------------------------------------*\
+  #COMPONENTS
+\*------------------------------------*/
+
+/*
+* HEADER
+*/
+.header {
+  background-color: var(--c-light-grey, #f4f1eb);
+  -webkit-box-shadow: 0 0 40px rgba(0,0,0,.5);
+          box-shadow: 0 0 40px rgba(0,0,0,.5);
+  -webkit-animation: fadeInTop .25s ease-in;
+          animation: fadeInTop .5s ease-in-out;
+}
+
+.header .l-container {
+  height: 10vh;
+}
+
+.logo svg {
+  max-width: 4rem;
+  max-height: 4rem;
+}
+
+.burgermenu {
+  position: relative;
+  min-width: 48px;
+  min-height: 48px;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
+  -webkit-transition: all .1s linear;
+       -o-transition: all .1s linear;
+          transition: all .1s linear;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+.bugermenu__line {
+  display: inline-block;
+  width: 80%;
+  height: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--c-primary-dark, #4e1879);
+}
+
+.burgermenu:active {
+  margin-bottom: -2px;
+}
+
+.burgermenu[aria-expanded=true] .bugermenu__line:first-of-type {
+  -webkit-transform: rotate(50deg);
+      -ms-transform: rotate(50deg);
+          transform: rotate(50deg);
+}
+.burgermenu[aria-expanded=true] .bugermenu__line:last-of-type {
+  display: block;
+  margin-top: -6px;
+  -webkit-transform: rotate(-50deg);
+      -ms-transform: rotate(-50deg);
+          transform: rotate(-50deg);
+}
+
+@media screen and (max-width: 31.20em) { /* 499 */
+  .main-nav {
+    position: absolute;
+    top: 10vh;
+    left: 0;
+    height: 90vh;
+    width: 100vw;
+    padding: 20vh 30vw 0;
+    text-align: center;
+    background-color: var(--c-light-grey, #f4f1eb);
+    z-index: 10;
+  }
+
+  .nav__link {
+    display: block;
+    margin-bottom: 8vh;
+    font-size: 3rem;
+  }
+}
+
+@media screen and (min-width: 31.21em) { /* 500 */
+  .burgermenu { display: none; }
+
+  .main-nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .nav__link {
+    margin-left: 4rem;
+    font-size: 2rem;
+  }
+}
+
+
+
+/*
+* FOOTER
+*/
+.footer .l-container {
+  height: 5vh;
+  color: #e0ddd6;
+}
+
+.footer p {
+  margin-bottom: 0;
+}
+
+
+
+/*
+* BUTTONS
+*/
+.btn--primary {
+  display: inline-block;
+  width: 100%;
+  padding: 1.4rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--c-btn-primary, #178574);
+  text-decoration: none;
+  border-radius: 1rem;
+}
+
+.btn--primary:hover {
+  color: #fff;
+  text-decoration: none;
+  background-color: var(--c-btn-primary-hover, #13675a);
+}

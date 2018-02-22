@@ -1,0 +1,41 @@
+/*------------------------------------*\
+  #LAYOUT
+\*------------------------------------*/
+.l-flex,
+.l-flex--center,
+.l-flex--justify {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.l-flex--center {
+  -webkit-box-pack: center;
+     -ms-flex-pack: center;
+   justify-content: center;
+  -webkit-box-align: center;
+     -ms-flex-align: center;
+        align-items: center;
+}
+
+.l-flex--justify {
+  -webkit-box-pack: justify;
+     -ms-flex-pack: justify;
+   justify-content: space-between;
+   -webkit-box-align: center;
+     -ms-flex-align: center;
+        align-items: center;
+}
+
+.l-container {
+  max-width: 98rem;
+  padding: 0 2rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (min-width: 63.750em) { /* 1020px */
+  .l-container {
+    padding: 0;
+  }
+}

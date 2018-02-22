@@ -1,0 +1,217 @@
+/* Resources:
+    https://cssguidelin.es/
+
+    Most of the accessibility stuff I have gotten from
+    "Inclusive Design Patterns" by Heydon Pickering
+*/
+
+/*
+  QUESTION: Is this okay to do or will there be too many requests?
+  I normally would of done this in scss
+*/
+@import "ext/normalize.css";
+@import "global.css";
+@import "layout.css";
+
+/*------------------------------------*\
+  #HOME PAGE
+\*------------------------------------*/
+
+/*
+* HERO
+*/
+.hero {
+  height: 85vh;
+  color: var(--c-light-grey, #f4f1eb);
+}
+
+.hero .l-container {
+  -webkit-animation: fadeIn .25s ease-in;
+          animation: fadeIn 1.2s ease-in;
+}
+
+
+
+
+
+/*------------------------------------*\
+  #WORK PAGE
+\*------------------------------------*/
+
+/*
+https://inclusive-components.design/a-content-slider/
+https://codeburst.io/how-to-create-horizontal-scrolling-containers-d8069651e9c6
+*/
+.projects {
+  height: 85vh;
+  padding-top: 6vh;
+  color: var(--c-light-grey, #f4f1eb);
+  text-align: center;
+}
+
+.projects h1,
+.projects-slider {
+  -webkit-animation: fadeIn .25s ease-in;
+          animation: fadeIn 1.2s ease-in;
+}
+
+.projects__container {
+  position: relative;
+  height: 70vh;
+  overflow: hidden;
+}
+
+.projects-slider {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow-x: auto;
+  padding-bottom: 30%;
+  -webkit-overflow-scrolling: touch;
+}
+
+.projects-slider:focus {
+  outline: 3px dotted var(--c-light-grey, #f4f1eb);
+}
+
+.projects-slider::-webkit-scrollbar {
+  display: none;
+}
+
+.project {
+  -webkit-box-flex: 0;
+          -ms-flex: 0 0 auto;
+              flex: 0 0 auto;
+  width: 75vw;
+  margin: 2vh 4vw;
+  overflow: hidden;
+  color: var(--c-dark-grey, #333);
+  background-color: var(--c-light-grey, #f4f1eb);
+  border-radius: 12px;
+}
+
+.project:first-of-type { margin-left: 13vw; }
+.project:last-of-type { margin-right: 0; }
+
+.project__img {
+  height: 28vh;
+  background-color: var(--c-dark-grey, #333);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+/*
+  panda: https://pixabay.com/en/panda-bear-cute-happy-young-151587/
+  retro: https://images.unsplash.com/photo-1506691318991-c91e7df669b1?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=54ac5fbd8a2da7d82f62f10d7d56129a&dpr=1&auto=format&fit=crop&w=1000&q=80&cs=tinysrgb
+*/
+.project-1 .project__img { background-image: url(../images/project-1-animal-trading-card.jpg); }
+.project-2 .project__img { background-image: url(../images/project-2-portfolio.jpg); }
+.project-3 .project__img { background-image: url(../images/project-3-memory-game.jpg); }
+.project-4 .project__img { background-image: url(../images/project-4-classic-arcade-game.jpg); }
+
+.project__desc {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+     -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+     -ms-flex-direction: column;
+         flex-direction: column;
+  -webkit-box-pack: justify;
+     -ms-flex-pack: justify;
+   justify-content: space-between;
+  min-height: 24vh;
+  padding: 1.6rem;
+  font-size: 1.8rem;
+}
+
+.project__tagline {
+  display: block;
+  font-size: 0.889em;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+.project__title {
+  font-size: 1em;
+}
+
+.spacer {
+  -webkit-box-flex: 0;
+          -ms-flex: 0 0 auto;
+              flex: 0 0 auto;
+  width: 13vw;
+}
+
+.projects-slider__instructions {
+  position: absolute;
+  bottom: 2vh;
+  left: -50%;
+  right: -50%;
+  display: none;
+  padding-left: 50%;
+  padding-right: 50%;
+}
+
+.projects-slider:focus + .projects-slider__instructions,
+.projects-slider:hover + .projects-slider__instructions,
+.touch .projects-slider__instructions,
+.projects-slider__instructions:focus,
+.projects-slider__instructions:hover {
+  display: block;
+}
+
+.projects-slider__instructions p {
+  margin-bottom: .5rem;
+}
+
+.project-previous,
+.project-next {
+  display: inline-block;
+  background-color: transparent;
+  border: 0;
+}
+
+.project-previous:focus,
+.project-next:focus {
+  outline: 3px dotted var(--c-light-grey, #f4f1eb);
+}
+
+.project-previous svg,
+.project-next svg {
+  max-width: 4rem;
+  max-height: 3rem;
+}
+
+@media screen and (min-width: 31.250em) { /* 460 */
+  .project {
+    width: 55vw;
+  }
+}
+
+@media screen and (min-width: 43.75em) { /* 700 */
+  .project {
+    width: 40vw;
+  }
+}
+
+@media screen and (min-width: 56.250em) { /* 900 */
+  .project {
+    width: 30vw;
+  }
+
+  .project__desc {
+    font-size: 2.2rem;
+  }
+
+  .project__tagline {
+    font-size: .75em;
+  }
+}
+
+@media screen and (min-width: 80em) { /* 1280 */
+  .project {
+    width: 22vw;
+  }
+}
