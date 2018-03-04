@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   if(nextSlide && prevSlide) {
     nextSlide.onclick = function () {
-      projectsSlider.scrollLeft += 200;
+      projectsSlider.scrollLeft += project.offsetWidth;
     };
 
     prevSlide.onclick = function () {
