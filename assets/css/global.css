@@ -73,14 +73,13 @@ html {
 }
 
 body {
-  overflow: hidden;
   background-color: var(--c-primary-dark, #4e1879);
   -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
           box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
 }
 
 /* Stopping the animated gradient from overlaying the content */
-body, header, main, footer {
+header, main, footer {
   position: relative;
 }
 
@@ -212,6 +211,13 @@ button:focus {
 * However animating top/left instead as bg size was using a lot of CPU
 * & causing screen to flicker on some devices
 */
+.bg-gradient {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
 .bg-gradient::before {
   content: "";
   position: absolute;
