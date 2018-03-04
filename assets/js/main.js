@@ -1,3 +1,5 @@
+'use strict';
+
 document.addEventListener("DOMContentLoaded", function() {
 
   // Gets the hamburger menu button & main menu
@@ -15,6 +17,8 @@ document.addEventListener("DOMContentLoaded", function() {
     menu.hidden = expanded;
   });
 
+
+
   // Checks if the user interacts with touch, if so add a class to the body
   // This is to show the extra instructions for the projects slider
   window.addEventListener('touchstart', function touched() {
@@ -22,16 +26,22 @@ document.addEventListener("DOMContentLoaded", function() {
     window.removeEventListener('touchstart', touched, false)
   }, false)
 
+
+
+  // Sets up the next/prev buttons for the slider
   const projectsSlider = document.querySelector('.projects-slider');
-  const slideLeft = document.querySelector('.project-next');
-  const slideRight = document.querySelector('.project-previous');
+  const project = document.querySelector('.project');
+  const nextSlide = document.querySelector('.project-next');
+  const prevSlide = document.querySelector('.project-previous');
 
-  slideLeft.onclick = function () {
+  if(nextSlide && prevSlide) {
+    nextSlide.onclick = function () {
       projectsSlider.scrollLeft += 200;
-  };
+    };
 
-  slideRight.onclick = function () {
-      projectsSlider.scrollLeft -= 200;
-  };
+    prevSlide.onclick = function () {
+      projectsSlider.scrollLeft -= project.offsetWidth;
+    };
+  }
 
 }); // end doc ready

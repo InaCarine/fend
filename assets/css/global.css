@@ -18,7 +18,7 @@
 * gradAnimation....Animation of the gradient by using bg posistion
 *
 * COMPONENTS
-* Header...........Global header and site navigation
+* Header/Footer....Global header/footer and site navigation
 * Buttons..........Styles for the primary button
 *
 */
@@ -53,12 +53,6 @@
           box-sizing: border-box;
 }
 
-* {
-  -webkit-transition: all 0.3s ease-in;
-       -o-transition: all 0.3s ease-in;
-          transition: all 0.3s ease-in;
-}
-
 
 /*
   1 - Default browser font size is 16px,
@@ -74,8 +68,6 @@ html {
 
 body {
   background-color: var(--c-primary-dark, #4e1879);
-  -webkit-box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
-          box-shadow: inset 0 0 10px rgba(0,0,0,0.4);
 }
 
 /* Stopping the animated gradient from overlaying the content */
@@ -208,8 +200,9 @@ button:focus {
 
 /*
 * Gradient animation from https://codepen.io/P1N2O/pen/pyBNzX
-* However animating top/left instead as bg size was using a lot of CPU
-* & causing screen to flicker on some devices
+* However animation by using transform instead as bg size was using a lot of CPU
+* & causing screen to flicker on some devices.
+* Looks like there's still a chance for this to happen
 */
 .bg-gradient {
   position: relative;
@@ -223,8 +216,8 @@ button:focus {
   position: absolute;
   top: 0;
   left: 0;
-  width: 400%;
-  height: 400%;
+  width: 200%;
+  height: 200%;
   background: -webkit-linear-gradient(290deg, var(--c-primary, #c90964), var(--c-primary-dark, #4e1879), var(--c-secondary, #30528a));
   background: -o-linear-gradient(290deg, var(--c-primary, #c90964), var(--c-primary-dark, #4e1879), var(--c-secondary, #30528a));
   background: linear-gradient(160deg, var(--c-primary, #c90964), var(--c-primary-dark, #4e1879), var(--c-secondary, #30528a));
@@ -281,16 +274,13 @@ button:focus {
 /* Animation that animates the background */
 @keyframes gradAnimation {
     0% {
-      top: 0;
-      left: 0;
+      transform: translate(0,0);
     }
     50% {
-      top: -200%;
-      left: -200%;
+      transform: translate(-50%,-50%);
     }
     100% {
-      top: 0;
-      left: 0;
+      transform: translate(0,0);
     }
 }
 
@@ -425,6 +415,9 @@ button:focus {
   background-color: var(--c-btn-primary, #178574);
   text-decoration: none;
   border-radius: 1rem;
+  -webkit-transition: all 0.3s ease-in;
+       -o-transition: all 0.3s ease-in;
+          transition: all 0.3s ease-in;
 }
 
 .btn--primary:hover {
