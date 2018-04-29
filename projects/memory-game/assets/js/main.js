@@ -1,7 +1,7 @@
 'use strict';
 
 /*
-* TODO: Refactor code to use objects instead, OOP
+* TODO: Refactor code to use objects instead, OOP. Accessibility?
 * Settings, Card objects?
 */
 document.addEventListener("DOMContentLoaded", function() {
