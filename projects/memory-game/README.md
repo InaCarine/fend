@@ -1,4 +1,6 @@
 # Memory game
+Link to the game: https://inacarine.github.io/fend/projects/memory-game/
+
 This is one of the projects that was done in the Google Front-end developer Nanodegree scholarship.  
 It should fulfill the requirements outlined in the https://review.udacity.com/#!/rubrics/591/view
 
