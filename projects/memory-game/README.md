@@ -7,4 +7,5 @@ The player's amount of tries to match a card is counted and a star rating is sho
 
 There's also an option to restart the game at anytime
 
-For the icons I have used [FontAwesome](https://fontawesome.com/)
+For the icons I have used [FontAwesome](https://fontawesome.com/)  
+I have also used https://autoprefixer.github.io/ to add the necessary vendor prefixes for the css
