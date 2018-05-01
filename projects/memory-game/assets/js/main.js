@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const winOverlay = document.querySelector('.win-overlay');
   let moves = 0;
   let stars = 3;
-  let previousCard = null
+  let previousCard = null;
   let isComparing = false;
   let numPairs = 0;
   let startTime, endTime, startTimer;
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function() {
   function duplicate(array) {
     let cards = []
 
-    for(var i = 0; i < array.length; i++) {
+    for(let i = 0; i < array.length; i++) {
       cards.push(array[i]);
       cards.push(array[i]);
     }
@@ -110,13 +110,13 @@ document.addEventListener("DOMContentLoaded", function() {
     timeDiff /= 1000;
 
     // get seconds
-    var seconds = Math.round(timeDiff % 60);
+    let seconds = Math.round(timeDiff % 60);
 
     // remove seconds from the date
     timeDiff = Math.floor(timeDiff / 60);
 
     // get minutes
-    var minutes = Math.round(timeDiff % 60);
+    let minutes = Math.round(timeDiff % 60);
 
     // remove minutes from the date
     timeDiff = Math.floor(timeDiff / 60);
