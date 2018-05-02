@@ -1,15 +1,11 @@
 'use strict';
 
 /*
-* TODO: Refactor code to use objects instead, OOP. Accessibility?
-* Settings, Card objects?
+* TODO: Refactor code to use OOP instead.
+* TODO: Make this accessible
+* TODO: Make timer affect star rating
 */
 document.addEventListener("DOMContentLoaded", function() {
-
-  /*
- * Create a list that holds all of your cards
- */
-  let cards = ['bug', 'beer', 'anchor', 'android', 'apple', 'coffee', 'reddit-alien', 'github-alt'];
 
   /* Global settings */
   const cardContainer = document.querySelector('.cards');
@@ -21,9 +17,11 @@ document.addEventListener("DOMContentLoaded", function() {
   let numPairs = 0;
   let startTime, endTime, startTimer;
   let firstClick = 1;
+  
+  let cards = ['bug', 'beer', 'anchor', 'android', 'apple', 'coffee', 'reddit-alien', 'github-alt'];
 
   /*
-   * Display the cards on the page
+   * @description Display the cards on the page
    *   - shuffle the list of cards using the provided "shuffle" method below
    *   - loop through each card and create its HTML
    *   - add each card's HTML to the page
@@ -43,9 +41,9 @@ document.addEventListener("DOMContentLoaded", function() {
   createDeck();
 
   /*
-   * Duplicate items in an array
-   * Loop through the array and add each item twice
-   * Return the duplicated array
+   * @description Duplicate items in an array
+   * @param {array} array
+   * @returns {array} a duplicated array
   */
   function duplicate(array) {
     let cards = []
@@ -58,8 +56,10 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   /*
-  * Shuffle items in an array
+  * @description Shuffle items in an array
   * Shuffle function from http://stackoverflow.com/a/2450976
+  * @param {array} array
+  * @returns {array} randomized array
   */
   function shuffle(array) {
     let currentIndex = array.length, temporaryValue, randomIndex;
@@ -77,7 +77,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
   /*
-  * Update the current score of the game
+  * @description Update the score of the game
+  * @param {number} nrStars - how many stars the user got
+  * @param {number} nrMoves - moves the user have taken
   */
   function updateScore(nrStars, nrMoves) {
     let starString = "";
@@ -100,8 +102,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
   
   /*
-  * Function for setting up the timer, showing time in minutes:seconds
+  * @description Function for setting up the timer, showing time in minutes:seconds
   * Function from https://stackoverflow.com/questions/1210701/compute-elapsed-time
+  * @returns {string} - The amount of time spent in minutes:seconds
   */
   function timer() {
     endTime = new Date();
@@ -122,7 +125,10 @@ document.addEventListener("DOMContentLoaded", function() {
     timeDiff = Math.floor(timeDiff / 60);
     return minutes + ":" + seconds;
   }
-
+  
+  /*
+  * @description Stops the timer
+  */
   function stopTimer() {
     clearInterval(startTimer);
     document.querySelector('.timer').innerHTML = '0:0';
@@ -138,7 +144,11 @@ document.addEventListener("DOMContentLoaded", function() {
     winOverlay.style.display = 'none';
     resetGame();
   });
-
+  
+  /*
+  * @description Resets/Restarts the game my reshuffling the cards
+  * and resets the score and timer
+  */
   function resetGame() {
     cardContainer.innerHTML = "";
     moves = 0; stars = 3; numPairs = 0;
@@ -148,7 +158,9 @@ document.addEventListener("DOMContentLoaded", function() {
     createDeck();
   }
 
-  // Function that displays the final score
+  /*
+  * @descriptions Displays a popup with the users final score
+  */
   function win() {
     document.querySelector('.final-time').innerHTML = document.querySelector('.timer').innerHTML;
     stopTimer();
@@ -169,10 +181,15 @@ document.addEventListener("DOMContentLoaded", function() {
   */
   cardContainer.addEventListener('click', checkCard);
 
-  // Function that checks if the cards are matching
+  /*
+  * @description Checks if the cards are matching
+  * @param {object} event target
+  * @returns if the card already have been flipped or two cards are being compared
+  */
   function checkCard(e) {
     const currentCard = e.target.parentNode;
 
+    // If this is the first card, start the timer
     if(firstClick) {
       startTime = new Date();
       startTimer = setInterval(function () {
@@ -190,7 +207,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Flip the card
     flipCard(currentCard, true);
 
-    // If this is the first card, save it
+    // If this is the first card of the turn, save it
     // else if previous card is a match with the curret card, match them
     // else cards does not match and needs to be flipped back
     if(!previousCard) {
@@ -204,11 +221,16 @@ document.addEventListener("DOMContentLoaded", function() {
         matchCards(currentCard);
       }, 600);    
     }
-        
+    
+    // Game won if all cards are matched
     if (numPairs === cards.length) setTimeout(function() {win()}, 500);
   }
 
-  // Flips the cards, if front is true, show the front, else turn them back
+  /*
+  * @description Flips the cards, if front is true, show the front, else turn them back
+  * @param {object} card - the card being flipped
+  * @param {boolean} front - if the front should be showing
+  */
   function flipCard(card, front = false) {
     if(front) {
       card.classList.add('is-flipped');
@@ -218,8 +240,12 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   }
 
-  // Matches the card if they are paired, if not it turns them back.
-  // And 
+  /*
+  * @description Matches the card if they are paired, if not it turns them back.
+  * and update the score to reflect the result
+  * @param {object} currentCard
+  * @param {boolean} paired - if they have been paired
+  */
   function matchCards(currentCard, paired = false) {
     if(paired) {
       previousCard.classList.add('is-matched');
