@@ -13,5 +13,6 @@ A player can see how well he is doing by looking at the star rating and the numb
 When all cards have been matched, a popup modal will appear, letting the player know the game has been won and show their final score. They also get the option of replaying the game.
 
 ## Resources
-For the symbols used in the game I am using [FontAwesome](https://fontawesome.com/)
-I have also used https://autoprefixer.github.io/ to add the necessary vendor prefixes for the css
+For the symbols used in the game I am using [FontAwesome](https://fontawesome.com/).  
+I have also used https://autoprefixer.github.io/ to add the necessary vendor prefixes for the css.  
+JS styleguide - https://udacity.github.io/frontend-nanodegree-styleguide/javascript.html
